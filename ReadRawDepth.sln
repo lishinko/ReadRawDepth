@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadRawDepth", "ReadRawDepth\ReadRawDepth.csproj", "{CF47DAB1-F982-41F5-999B-36CA5DDEF403}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CF47DAB1-F982-41F5-999B-36CA5DDEF403}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF47DAB1-F982-41F5-999B-36CA5DDEF403}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF47DAB1-F982-41F5-999B-36CA5DDEF403}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF47DAB1-F982-41F5-999B-36CA5DDEF403}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {90D1ECDB-DBD7-446B-AAF6-CB9E05C8DC4D}
+	EndGlobalSection
+EndGlobal
