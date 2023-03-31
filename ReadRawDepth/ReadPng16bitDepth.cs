@@ -17,27 +17,43 @@ namespace ReadRawDepth
         {
             using (var original = new Mat(path, ImreadModes.Unchanged))
             {
-                Rect rc = new Rect(offsetx, offsety, width, height);
-                using (var depth = original[rc])
-                {
-                    var m = new Mat(width, height, MatType.CV_16UC1);
-                    var showing = depth;
-                    for (int y = 0; y < showing.Rows; y++)
-                    {
-                        for (int x = 0; x < showing.Cols; x++)
-                        {
-                            ref var e = ref showing.At<color>(x, y);
-                            ref var m1 = ref m.At<UInt16>(x, y);
-                            m1 = (ushort)(e.r << (ushort)8 + (ushort)e.g);
-                            ref var m2 = ref m.At<UInt16>(x + 1, y);
-                            m2 = (ushort)(e.b << (ushort)8 + (ushort)e.a);
-                        }
-                    }
-                    _mat = m;
-                }
+                //var showing = original;
+                //Cv2.ImShow("show", showing);
+                //Cv2.WaitKey();
+                BuildMat(offsetx, offsety, width, height, original);
             }
             _path = path;
         }
+
+        private void BuildMat(int offsetx, int offsety, int width, int height, Mat original)
+        {
+            Rect rc = new Rect(offsetx, offsety, width, height);
+            using (var depth = original[rc])
+            {
+                //var showing = depth;
+                //Cv2.ImShow("show", showing);
+                //Cv2.WaitKey();
+                var m = new Mat(width * 2, height, MatType.CV_16UC1);
+                for (int y = 0; y < depth.Cols; y++)
+                {
+                    for (int x = 0; x < depth.Rows; x++)
+                    {
+                        ref var e = ref depth.At<color>(x, y);
+                        var m1 = (ushort)((e.r << (ushort)8) + (ushort)e.g);
+                        m.Set<UInt16>(x, 2 * y, m1);
+
+                        var m2 = (ushort)((e.b << (ushort)8) + (ushort)e.a);
+                        m.Set<UInt16>(x, 2 * y + 1, m2);
+
+                    }
+                }
+                _mat = m;
+
+                _mat.MinMaxIdx(out var minIdx, out var maxIdx);
+                Console.WriteLine($"min = {minIdx}, max = {maxIdx}");
+            }
+        }
+
         public void Show()
         {
             var showing = _mat;
