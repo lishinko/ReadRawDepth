@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ReadRawDepth": {
+      "commandName": "Project",
+      "commandLineArgs": "-f D:\\code\\ReadRawDepth\\ReadRawDepth\\bin\\Debug\\net6.0\\all.png -g"
+    }
+  }
+}

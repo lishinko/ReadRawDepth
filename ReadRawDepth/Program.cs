@@ -32,7 +32,11 @@ namespace ReadRawDepth
             {
                 throw new NullReferenceException("no path to read");
             }
-            using (var d = new ReadRawDepth(path, 528, 528, 1.0f, true))
+            //using (var d = new ReadRawDepth(path, 528, 528, 1.0f, true))
+            //{
+            //    d.Show();
+            //}
+            using(var d = new ReadPng16bitDepth(path, 512,0, 512, 1024, true))
             {
                 d.Show();
             }
