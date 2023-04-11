@@ -12,7 +12,7 @@ namespace ReadRawDepth
         public ReadRawDepth(string path, int width, int height, float scale, bool gamma)
         {
             var raw = File.ReadAllBytes(path);
-            _mat = new Mat(width, height, MatType.CV_32FC1, raw, 0);
+            _mat = new Mat(height, width, MatType.CV_32FC1, raw, 0);
             _path = path;
             if (scale != 1.0f)
             {
@@ -25,7 +25,7 @@ namespace ReadRawDepth
                 {
                     for (int x = 0; x < showing.Cols; x++)
                     {
-                        ref var e = ref showing.At<float>(x, y);
+                        ref var e = ref showing.At<float>(y, x);//注意,是y在前面,先行后列
                         e = MathF.Pow(e, 1f / 2.2f);
                     }
                 }
@@ -45,6 +45,8 @@ namespace ReadRawDepth
         }
         public void Show()
         {
+            //var rect = new Rect(0, 0, 640, 640);
+            //var showing = _mat[rect];
             var showing = _mat;
             Cv2.ImShow("show", showing);
             Cv2.WaitKey();

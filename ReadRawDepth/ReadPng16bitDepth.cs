@@ -30,9 +30,6 @@ namespace ReadRawDepth
             Rect rc = new Rect(offsetx, offsety, width, height);
             using (var depth = original[rc])
             {
-                //var showing = depth;
-                //Cv2.ImShow("show", showing);
-                //Cv2.WaitKey();
                 var m = new Mat(width * 2, height, MatType.CV_16UC1);
                 for (int y = 0; y < depth.Cols; y++)
                 {
@@ -63,8 +60,6 @@ namespace ReadRawDepth
         public void Log()
         {
             var fullPath = Path.GetFullPath(_path);
-            var fileName = Path.GetFileNameWithoutExtension(fullPath);
-            var directory = Path.GetDirectoryName(fullPath);
             var mat = _mat;
             mat.MinMaxIdx(out var minIdx, out var maxIdx);
             Console.WriteLine($"min = {minIdx}, max = {maxIdx}");
